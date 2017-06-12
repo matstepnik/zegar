@@ -1,5 +1,7 @@
 package zegar;
 
+import java.time.ZoneId;
+
 import processing.core.PApplet;
 
 public class Zegar{
@@ -9,7 +11,7 @@ public class Zegar{
 	private Wskazowka minutowa;
 	private Wskazowka sekundowa;
 	
-	Zegar(float xO, float yO, float r, String strefa_czasowa){
+	Zegar(float xO, float yO, float r, ZoneId strefa_czasowa){
 		this.cyferblat = new Cyferblat(xO, yO, r);
 		this.godzinowa = new Wskazowka("godz", cyferblat, strefa_czasowa);
 		this.minutowa = new Wskazowka("min", cyferblat, strefa_czasowa);

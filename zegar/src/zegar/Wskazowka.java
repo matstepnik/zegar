@@ -1,4 +1,4 @@
-package zegar;
+ package zegar;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -15,10 +15,10 @@ public class Wskazowka {
 	private ZoneId strefa_czasowa; //strefa czasowa
 	
 	/** Rodzaj wskazówki: godz, min, sek */
-	Wskazowka(String rodzaj, Cyferblat cyferblat, String strefa_czasowa){
+	Wskazowka(String rodzaj, Cyferblat cyferblat, ZoneId strefa_czasowa){
 		this.rodzaj = rodzaj;
 		this.cyferblat = cyferblat;
-		this.strefa_czasowa = ZoneId.of(strefa_czasowa);
+		this.strefa_czasowa = strefa_czasowa;
 		switch (this.rodzaj){
 		case "godz":
 			this.l = (float)0.4*cyferblat.getR();
@@ -32,7 +32,8 @@ public class Wskazowka {
 		}
 	}
 	
-		
+	
+
 	/** Zwraca wspó³rzêdne grota wskazówki w uk³adzie zegara*/
 	private float[] grot(){
 		float[] ret = new float[2];

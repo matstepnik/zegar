@@ -14,8 +14,8 @@ public class Slonce {
 	private Cyferblat cyferblat;
 	private SunriseSunset ss;
 	
-	Slonce(PApplet p, Cyferblat cyferblat, double lat, double lon, String strefa_czasowa){
-		this.ss = new SunriseSunset(p, lat, lon, strefa_czasowa);
+	Slonce(PApplet p, Cyferblat cyferblat, SunriseSunset ss){
+		this.ss = ss;
 		this.cyferblat = cyferblat;
 	}
 	

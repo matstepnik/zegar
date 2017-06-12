@@ -3,6 +3,9 @@ package zegar;
 import processing.core.PApplet;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
+
+import java.time.ZoneId;
+
 import controlP5.*;
 
 public class App extends PApplet{
@@ -14,14 +17,19 @@ public class App extends PApplet{
 	private Zegar zJerozolima;
 	private Slonce sJerozolima;
 	
+	private SunriseSunset[] ssArr;
+	
 	private ControlP5 cp5;
 	private DropdownList ddl1;
 	private JSONArray cities;
 	private String[] items;
 	
+	private SunriseSunset ss1;
+	/*
 	private double lon1;
 	private double lat1;
 	private String zone1;
+	*/
 	private String name1;
 
 	public static void main(String[] args) {
@@ -39,18 +47,29 @@ public class App extends PApplet{
 		getCityData();
 		customizeDropdownList(ddl1);
 		
+		this.ssArr = new SunriseSunset[cities.size()];
+		//create SunriseSunset[] for all cities
+		for (int i=0; i<cities.size();i++){
+			this.ssArr[i] = new SunriseSunset(this, 
+					(Double)((JSONObject)this.cities.get(i)) .get("lat"),
+					(Double)((JSONObject)this.cities.get(i)) .get("lon"),
+					(String)((JSONObject)this.cities.get(i)) .get("zoneid"));
+		}
+		for (int i=0; i<this.ssArr.length;i++){
+			System.out.println(this.ssArr[i].toString());
+		}
+				
 		//initializing
-		zone1 = "America/New_York";
+		/*zone1 = "America/New_York";
 		lon1 = 40.7166;
-		lat1 = -74.0000;
+		lat1 = -74.0000;*/
 		name1 = "Nowy Jork";
-						
-		this.z1 = new Zegar(200, 200, 150, zone1);
-		this.s1 = new Slonce(this, this.z1.getCyferblat(), lon1, lat1, zone1);
-		this.zNowyJork = new Zegar(600, 200, 150, "America/New_York");
-		this.sNowyJork = new Slonce(this, this.zNowyJork.getCyferblat(), 40.7166, -74.0000, "America/New_York");
-		this.zJerozolima = new Zegar(1000, 200, 150, "Asia/Jerusalem");
-		this.sJerozolima = new Slonce(this, this.zJerozolima.getCyferblat(), 31.7786, 35.2294, "Asia/Jerusalem");
+		ss1 = ssArr[2];			
+		
+		this.zNowyJork = new Zegar(600, 200, 150, ZoneId.of("America/New_York"));
+		this.sNowyJork = new Slonce(this, this.zNowyJork.getCyferblat(), this.ssArr[2]);
+		this.zJerozolima = new Zegar(1000, 200, 150, ZoneId.of("Asia/Jerusalem"));
+		this.sJerozolima = new Slonce(this, this.zJerozolima.getCyferblat(), this.ssArr[1]);
 		
 		//System.out.println(this.s1.getSunriseSunset().toString());
 		
@@ -60,7 +79,8 @@ public class App extends PApplet{
 	public void draw() {
 		background(100);
 		
-		
+		this.z1 = new Zegar(200, 200, 150, this.ss1.getZone());
+		this.s1 = new Slonce(this, this.z1.getCyferblat(), this.ss1);
 		
 		z1.draw(this);
 		s1.draw(this);
@@ -105,7 +125,7 @@ public class App extends PApplet{
 		for (int i=0; i<this.cities.size(); i++){
 			String cityName = (String) ((JSONObject)cities.get(i)) .get("name");
 			this.items[i] = cityName;
-			//System.out.println(cityName);
+			System.out.println(cityName);
 		}
 	}
 	
@@ -117,11 +137,15 @@ public class App extends PApplet{
 				//selectedImage = (int)(theEvent.getController().getValue());
 				int index = (int) theEvent.getController().getValue();
 				
+				this.ss1 = this.ssArr[index];
+				/*
 				this.lat1 = (Double)((JSONObject)this.cities.get(index)) .get("lat");
 				this.lon1 = (Double)((JSONObject)this.cities.get(index)) .get("lon");
 				this.zone1 = (String)((JSONObject)this.cities.get(index)) .get("zoneid");
+				*/
 				this.name1 = (String)((JSONObject)this.cities.get(index)) .get("name");
-				System.out.println(name1+" "+lat1+" "+lon1+" "+zone1);
+				System.out.println(name1+" "+ss1.toString());
+				
 				
 			}
 		}

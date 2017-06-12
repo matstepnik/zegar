@@ -97,6 +97,10 @@ public class SunriseSunset {
 		return this.solar_noon;
 	}
 	
+	public ZoneId getZone(){
+		return this.strefa_czasowa;
+	}
+	
 	public String toString(){
 		DateTimeFormatter format = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT);
 		String result = this.date.toString() + "; "
