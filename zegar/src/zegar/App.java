@@ -10,12 +10,12 @@ import controlP5.*;
 
 public class App extends PApplet{
 	
-	private Zegar z1;
-	private Slonce s1;
-	private Zegar zNowyJork;
-	private Slonce sNowyJork;
-	private Zegar zJerozolima;
-	private Slonce sJerozolima;
+	private Clock zWarszawa;
+	private SolarDayMomentsClock sWarszawa;
+	private Clock zNowyJork;
+	private SolarDayMomentsClock sNowyJork;
+	private Clock zJerozolima;
+	private SolarDayMomentsClock sJerozolima;
 	
 	private SunriseSunset[] ssArr;
 	
@@ -25,11 +25,7 @@ public class App extends PApplet{
 	private String[] items;
 	
 	private SunriseSunset ss1;
-	/*
-	private double lon1;
-	private double lat1;
-	private String zone1;
-	*/
+	
 	private String name1;
 
 	public static void main(String[] args) {
@@ -40,12 +36,12 @@ public class App extends PApplet{
 		size(1200, 450);
 	}
 	
-	public void setup() {	
-		
+	public void setup() {		
 		cp5 = new ControlP5(this);
 		ddl1 = cp5.addDropdownList("WyborMiasta");
 		getCityData();
 		customizeDropdownList(ddl1);
+		
 		
 		this.ssArr = new SunriseSunset[cities.size()];
 		//create SunriseSunset[] for all cities
@@ -60,18 +56,16 @@ public class App extends PApplet{
 		}
 				
 		//initializing
-		/*zone1 = "America/New_York";
-		lon1 = 40.7166;
-		lat1 = -74.0000;*/
-		name1 = "Nowy Jork";
-		ss1 = ssArr[2];			
+		ss1 = this.ssArr[0];
+		name1 = "Warszawa";
 		
-		this.zNowyJork = new Zegar(600, 200, 150, ZoneId.of("America/New_York"));
-		this.sNowyJork = new Slonce(this, this.zNowyJork.getCyferblat(), this.ssArr[2]);
-		this.zJerozolima = new Zegar(1000, 200, 150, ZoneId.of("Asia/Jerusalem"));
-		this.sJerozolima = new Slonce(this, this.zJerozolima.getCyferblat(), this.ssArr[1]);
 		
-		//System.out.println(this.s1.getSunriseSunset().toString());
+		this.zNowyJork = new Clock(600, 200, 150, ZoneId.of("America/New_York"));
+		this.sNowyJork = new SolarDayMomentsClock(this, this.zNowyJork.getClockDial(), this.ssArr[2]);
+		this.zJerozolima = new Clock(1000, 200, 150, ZoneId.of("Asia/Jerusalem"));
+		this.sJerozolima = new SolarDayMomentsClock(this, this.zJerozolima.getClockDial(), this.ssArr[1]);
+		
+		//System.out.println(this.sWarszawa.getSunriseSunset().toString());
 		
 		
 	}
@@ -79,11 +73,11 @@ public class App extends PApplet{
 	public void draw() {
 		background(100);
 		
-		this.z1 = new Zegar(200, 200, 150, this.ss1.getZone());
-		this.s1 = new Slonce(this, this.z1.getCyferblat(), this.ss1);
+		this.zWarszawa = new Clock(200, 200, 150, ss1.getZone());
+		this.sWarszawa = new SolarDayMomentsClock(this, this.zWarszawa.getClockDial(), ss1);
 		
-		z1.draw(this);
-		s1.draw(this);
+		zWarszawa.draw(this);
+		sWarszawa.draw(this);
 		zNowyJork.draw(this);
 		sNowyJork.draw(this);
 		zJerozolima.draw(this);
