@@ -4,7 +4,7 @@ import java.time.ZoneId;
 
 import processing.core.PApplet;
 
-public class Clock{
+public class Clock implements Drawable{
 
 	private ClockDial ClockDial;
 	private ClockHand hourHand;

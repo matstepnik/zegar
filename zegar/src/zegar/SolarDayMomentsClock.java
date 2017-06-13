@@ -7,7 +7,7 @@ import java.time.format.FormatStyle;
 import processing.core.PApplet;
 import processing.core.PConstants;
 
-public class SolarDayMomentsClock {
+public class SolarDayMomentsClock implements Drawable{
 
 	private ClockDial clockDial;
 	private ZonedDateTime[] momentsTime = new ZonedDateTime[3];

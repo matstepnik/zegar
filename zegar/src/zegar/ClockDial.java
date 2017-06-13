@@ -3,7 +3,7 @@ package zegar;
 import processing.core.PApplet;
 import processing.core.PConstants;
 
-public class ClockDial {
+public class ClockDial implements Drawable{
 
 	private float xOrigin;
 	private float yOrigin;

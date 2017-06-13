@@ -7,7 +7,7 @@ import java.time.ZonedDateTime;
 
 import processing.core.PApplet;
 
-public class ClockHand {
+public class ClockHand implements Drawable{
 
 	private ClockDial clockDial;
 	//TODO wprowadziæ Enum
