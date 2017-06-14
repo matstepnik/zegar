@@ -1,7 +1,5 @@
  package zegar;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -71,10 +69,7 @@ public class ClockHand implements Drawable{
 	}
 	
 	private ZonedDateTime zonedTime(){
-		//TODO pobraæ strefê czasow¹ (czas strefowy) z komputera
-		LocalTime localTime = LocalTime.now();
-		LocalDate localDate = LocalDate.now();
-		ZonedDateTime zonedTimeOfComp = ZonedDateTime.of(localDate, localTime, ZoneId.of("Europe/Warsaw")); //przy za³o¿eniu, ¿e komputer jest w Polsce
+		ZonedDateTime zonedTimeOfComp = ZonedDateTime.now();
 		ZonedDateTime zonedTime = zonedTimeOfComp.withZoneSameInstant(this.time_zone);
 		return zonedTime;
 	}

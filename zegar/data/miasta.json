@@ -2,5 +2,6 @@
 {"name":"Warszawa", "zoneid":"Europe/Warsaw", "lat":52.2389, "lon":21.0255},
 {"name":"Jerozolima", "zoneid":"Asia/Jerusalem", "lat":31.7786, "lon":35.2294},
 {"name":"Nowy Jork", "zoneid":"America/New_York", "lat":40.7166, "lon":-74.0000},
-{"name":"Sydney", "zoneid":"Australia/Sydney", "lat":-33.8666, "lon":151.2000}
+{"name":"Sydney", "zoneid":"Australia/Sydney", "lat":-33.8666, "lon":151.2000},
+{"name":"Kiritimati", "zoneid":"Pacific/Kiritimati", "lat":1.8833, "lon":-157.4000}
 ]

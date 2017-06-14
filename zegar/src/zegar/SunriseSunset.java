@@ -41,7 +41,7 @@ public class SunriseSunset {
 		this.solar_noon = parseToZonalTime(p, "solar_noon", this.time_zone);
 	}
 	
-	/** Zwraca czas w odpowiedniej strefie czasowej dla field={sunrise, sunset, solar_nood} */
+	/** Zwraca czas w odpowiedniej strefie czasowej dla field={sunrise, sunset, solar_noon} */
 	private ZonedDateTime parseToZonalTime(PApplet p, String field, ZoneId time_zone){
 		String fileName = "https://api.sunrise-sunset.org/json?lat="+this.lat+"&lng="+this.lon+"&date="+this.date+"&formatted=0";
 		JSONObject sunrise_sunset = p.loadJSONObject(fileName);
